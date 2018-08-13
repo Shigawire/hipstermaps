@@ -41,6 +41,7 @@ gem 'dotenv-rails'
 gem 'sidekiq'
 gem 'pry-rails'
 gem 'haml-rails', '~> 1.0'
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

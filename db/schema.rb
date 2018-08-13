@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 2018_08_12_202332) do
 
   create_table "maps", force: :cascade do |t|
     t.string "format"
-    t.string "lon"
-    t.string "lat"
-    t.string "mapbox_map_id"
+    t.string "style"
+    t.float "lon"
+    t.float "lat"
+    t.float "zoom"
     t.string "filename"
     t.string "title"
     t.string "subtitle"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
