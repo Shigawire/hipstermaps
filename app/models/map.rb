@@ -7,8 +7,6 @@ class Map < ApplicationRecord
   validates :lat, presence: true
   validates :zoom, presence: true
   validates :style, presence: true
-  validates :subtitle, presence: true
-  validates :coords, presence: true
 
   before_commit :set_filename, only: :create
   after_commit :start_worker, only: :create
