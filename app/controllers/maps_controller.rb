@@ -23,6 +23,6 @@ class MapsController < ApplicationController
   private
 
   def map_params
-    params.require(:map).permit([:title, :format, :lon, :lat, :zoom, :style])
+    params.require(:map).permit([:title, :format, :lon, :lat, :zoom, :style, :subtitle, :coords])
   end
 end
