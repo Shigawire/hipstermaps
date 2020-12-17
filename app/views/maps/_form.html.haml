@@ -3,7 +3,11 @@
     #hipstermap-poster-container
       #hipstermap-preview-map
       #hipstermap-title
-        The Earth
+        E A R T H
+      #hipstermap-subtitle
+        C O U N T R Y
+      #hipstermap-coords
+        41°01"14" N 28°58"30" O
   %div
     - if @map.errors.any?
       .uk-alert.uk-alert-danger
@@ -19,7 +23,13 @@
           = f.input :style, as: :select, collection: [['Blue', 'blue']], input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :title, input_html: {class: 'uk-input', value: 'The Earth'}, label_html: {class: 'uk-form-label'}
+          = f.input :title, input_html: {class: 'uk-input', value: 'E A R T H'}, label_html: {class: 'uk-form-label'}
+      .uk-margin
+        .uk-form-controls
+          = f.input :subtitle, input_html: {class: 'uk-input', value: 'C O U N T R Y'}, label_html: {class: 'uk-form-label'}
+      .uk-margin
+        .uk-form-controls
+          = f.input :coords, input_html: {class: 'uk-input', value: '41°01"14" N 28°58"30" O'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         = f.input :lon, as: :hidden, input_html: {value: 0}
         = f.input :lat, as: :hidden, input_html: {value: 0}

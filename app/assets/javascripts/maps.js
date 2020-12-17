@@ -13,6 +13,16 @@ $(document).on('turbolinks:load', () => {
     $('#hipstermap-title').text(value);
   })
 
+  $('#map_subtitle').on('input', function() {
+    var value = $(this).val();
+    $('#hipstermap-subtitle').text(value);
+  })
+
+  $('#map_coords').on('input', function() {
+    var value = $(this).val();
+    $('#hipstermap-coords').text(value);
+  })
+
   if ($('#hipstermap-preview-map').length == 0) return;
 
   var map = new mapboxgl.Map({

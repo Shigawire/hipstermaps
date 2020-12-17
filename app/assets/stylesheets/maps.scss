@@ -21,7 +21,7 @@
 
 #hipstermap-preview-map {
   width: 460px;
-  height: 580px;
+  height: 500px;
   margin: 0 auto;
   margin: 20px;
 
@@ -32,5 +32,21 @@
   color: #000;
   margin-top: 20px;
   font-size: 24px;
-  font-family: 'OpenSans';
+  font-family: 'Arial';
+}
+
+#hipstermap-subtitle {
+  text-align: center;
+  color: rgb(45, 104, 134);
+  margin-top: 5px;
+  font-size: 16px;
+  font-family: 'Arial';
+}
+
+#hipstermap-coords {
+  text-align: center;
+  color: rgb(45, 104, 134);
+  margin-top: 5px;
+  font-size: 16px;
+  font-family: 'Arial';
 }

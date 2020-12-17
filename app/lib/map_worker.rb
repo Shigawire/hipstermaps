@@ -13,7 +13,9 @@ class MapWorker
       lon: map.lon,
       lat: map.lat,
       bucketFile: map.filename,
-      title: map.title
+      title: map.title,
+      subtitle: map.subtitle,
+      coords: map.coords
     }.to_json
 
     aws_lambda = Aws::Lambda::Client.new
