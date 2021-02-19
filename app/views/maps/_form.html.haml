@@ -3,9 +3,9 @@
     #hipstermap-poster-container
       #hipstermap-preview-map
       #hipstermap-title
-        E A R T H
+        CITY
       #hipstermap-subtitle
-        C O U N T R Y
+        COUNTRY
       #hipstermap-coords
         41°01"14" N 28°58"30" O
   %div
@@ -23,10 +23,10 @@
           = f.input :style, label: 'Style', as: :select, collection: [['Blue', 'blue']], selected: 'Blue', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :title, label: 'City', input_html: {class: 'uk-input', value: 'E A R T H'}, label_html: {class: 'uk-form-label'}
+          = f.input :title, label: 'City', input_html: {class: 'uk-input', value: 'CITY'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :subtitle, label: 'Country', input_html: {class: 'uk-input', value: 'C O U N T R Y'}, label_html: {class: 'uk-form-label'}
+          = f.input :subtitle, label: 'Country', input_html: {class: 'uk-input', value: 'COUNTRY'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
           = f.input :coords, label: 'Coordinates', input_html: {class: 'uk-input'}, label_html: {class: 'uk-form-label'}
