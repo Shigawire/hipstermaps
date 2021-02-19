@@ -17,7 +17,7 @@
       .uk-margin
         //%label.uk-form-label{:for => "form-stacked-select"} Format
         .uk-form-controls
-          = f.input :format, label: 'Format', as: :select, collection: [['DIN A', 'DIN']], selected: 'DIN A', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
+          = f.input :format, label: 'Format', as: :select, collection: [['75x50cm', '2:3'], ['40x30cm', '3:4']], selected: '75x50cm', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
           = f.input :style, label: 'Style', as: :select, collection: [['Blue', 'blue']], selected: 'Blue', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}

@@ -8,7 +8,7 @@ class MapWorker
     map = Map.find(id)
 
     payload = {
-      formatSize: 'DIN',
+      formatSize: map.format,
       mapStyle: 'cjkqod0by7xsc2rpju6kvos0x',
       lon: map.lon,
       lat: map.lat,
