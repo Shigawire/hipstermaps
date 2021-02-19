@@ -1,7 +1,6 @@
 class Map < ApplicationRecord
   enum status: [ :in_progress, :available, :failed ]
 
-  validates :title, presence: true
   validates :format, presence: true
   validates :lon, presence: true
   validates :lat, presence: true

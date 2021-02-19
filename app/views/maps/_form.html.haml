@@ -17,19 +17,19 @@
       .uk-margin
         //%label.uk-form-label{:for => "form-stacked-select"} Format
         .uk-form-controls
-          = f.input :format, as: :select, collection: [['DIN A', 'DIN']], input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
+          = f.input :format, label: 'Format', as: :select, collection: [['DIN A', 'DIN']], selected: 'DIN A', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :style, as: :select, collection: [['Blue', 'blue']], input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
+          = f.input :style, label: 'Style', as: :select, collection: [['Blue', 'blue']], selected: 'Blue', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :title, input_html: {class: 'uk-input', value: 'E A R T H'}, label_html: {class: 'uk-form-label'}
+          = f.input :title, label: 'City', input_html: {class: 'uk-input', value: 'E A R T H'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :subtitle, input_html: {class: 'uk-input', value: 'C O U N T R Y'}, label_html: {class: 'uk-form-label'}
+          = f.input :subtitle, label: 'Country', input_html: {class: 'uk-input', value: 'C O U N T R Y'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         .uk-form-controls
-          = f.input :coords, input_html: {class: 'uk-input', value: '41°01"14" N 28°58"30"'}, label_html: {class: 'uk-form-label'}
+          = f.input :coords, label: 'Coordinates', input_html: {class: 'uk-input'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         = f.input :lon, as: :hidden, input_html: {value: 0}
         = f.input :lat, as: :hidden, input_html: {value: 0}

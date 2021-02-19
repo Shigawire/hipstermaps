@@ -35,16 +35,22 @@ $(document).on('turbolinks:load', () => {
   map.scrollZoom.disable();
 
   map.on('zoomend', function(event) {
-    //console.log(map.getZoom());
     var zoom = map.getZoom();
+    zoom = Math.round(zoom) + 3
     $('#map_zoom').val(zoom);
   })
 
   map.on('moveend', function(event) {
-    var centerPosition = map.getCenter();
+    var center = map.getCenter();
     //var center = [centerPosition.lng, centerPosition.lat];
-    $('#map_lon').val(centerPosition.lng);
-    $('#map_lat').val(centerPosition.lat);
+    $('#map_lon').val(center.lng);
+    $('#map_lat').val(center.lat);
+
+    var lat = center.lat.toString();
+    var lng = center.lng.toString();
+    var dms = convertDMS(lat, lng);
+    $('#map_coords').val(dms);
+    $('#hipstermap-coords').text(dms);
   })
 
   var geocoder = new MapboxGeocoder({
@@ -54,18 +60,51 @@ $(document).on('turbolinks:load', () => {
   });
 
   geocoder.on('result', function(data) {
-    console.log(data.result.center);
+    var center = data.result.center;
+    var lng = center[0].toString();
+    var lat = center[1].toString();
+    var dms = convertDMS(lat, lng);
+    $('#map_coords').val(dms);
+    $('#hipstermap-coords').text(dms);
+
+    var location = data.result.place_name.toUpperCase().split(', ')
+    $('#map_title').val(location[0]);
+    $('#hipstermap-title').text(location[0]);
+    $('#map_subtitle').val(location[2]);
+    $('#hipstermap-subtitle').text(location[2]);
+
     map.flyTo({
       center: data.result.center,
       zoom: maxZoom
     })
   });
 
+  map.addControl(new mapboxgl.NavigationControl(), 'top-left');
   map.addControl(geocoder);
 
   // var map = L.mapbox.map('hipstermap-preview-map', 'shigawire.cjkqod0by7xsc2rpju6kvos0x')
   //     .setView([51.960, 7.617], 13);
 
 })
+
+function toDegreesMinutesAndSeconds(coordinate) {
+    var absolute = Math.abs(coordinate);
+    var degrees = Math.floor(absolute);
+    var minutesNotTruncated = (absolute - degrees) * 60;
+    var minutes = Math.floor(minutesNotTruncated);
+    var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+
+    return `${degrees}° ${minutes}' ${seconds}"`
+}
+
+function convertDMS(lat, lng) {
+    var latitude = toDegreesMinutesAndSeconds(lat);
+    var latitudeCardinal = lat >= 0 ? "N" : "S";
+
+    var longitude = toDegreesMinutesAndSeconds(lng);
+    var longitudeCardinal = lng >= 0 ? "E" : "W";
+
+    return latitude + " " + latitudeCardinal + " - " + longitude + " " + longitudeCardinal;
+}
 
 //mapbox://styles/mapbox/light-v9
