@@ -70,8 +70,8 @@ $(document).on('turbolinks:load', () => {
     var location = data.result.place_name.toUpperCase().split(', ')
     $('#map_title').val(location[0]);
     $('#hipstermap-title').text(location[0]);
-    $('#map_subtitle').val(location[2]);
-    $('#hipstermap-subtitle').text(location[2]);
+    $('#map_subtitle').val(location[location.length - 1]);
+    $('#hipstermap-subtitle').text(location[location.length - 1]);
 
     map.flyTo({
       center: data.result.center,
