@@ -1,27 +1,22 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpZ2F3aXJlIiwiYSI6ImNqYXo4YXRiNDFqMjEyd3Bpc2t5YXB2bHMifQ.ulCNsDwo7eL1R37bpRSxRg';
 
-// var mapConfig = {
-//   zoom: 0.1,
-//   center: [0, 0]
-// };
-
 const maxZoom = 11;
 
 $(document).on('turbolinks:load', () => {
   $('#map_title').on('input', function() {
     var value = $(this).val();
     $('#hipstermap-title').text(value);
-  })
+  });
 
   $('#map_subtitle').on('input', function() {
     var value = $(this).val();
     $('#hipstermap-subtitle').text(value);
-  })
+  });
 
   $('#map_coords').on('input', function() {
     var value = $(this).val();
     $('#hipstermap-coords').text(value);
-  })
+  });
 
   if ($('#hipstermap-preview-map').length == 0) return;
 
@@ -35,14 +30,18 @@ $(document).on('turbolinks:load', () => {
   map.scrollZoom.disable();
 
   map.on('zoomend', function(event) {
-    var zoom = map.getZoom();
-    zoom = Math.round(zoom) + 3
-    $('#map_zoom').val(zoom);
-  })
+    setFormatZoom(map);
+  });
+
+  $('#map_format').on('input', function() {
+    setFormatZoom(map);
+  });
 
   map.on('moveend', function(event) {
+    $('.hidden--on-load').each(function() {
+      $(this).removeClass('hidden--on-load');
+    });
     var center = map.getCenter();
-    //var center = [centerPosition.lng, centerPosition.lat];
     $('#map_lon').val(center.lng);
     $('#map_lat').val(center.lat);
 
@@ -56,7 +55,6 @@ $(document).on('turbolinks:load', () => {
   var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     flyTo: false
-    //zoom: 4
   });
 
   geocoder.on('result', function(data) {
@@ -67,7 +65,7 @@ $(document).on('turbolinks:load', () => {
     $('#map_coords').val(dms);
     $('#hipstermap-coords').text(dms);
 
-    var location = data.result.place_name.toUpperCase().split(', ')
+    var location = data.result.place_name.toUpperCase().split(', ');
     $('#map_title').val(location[0]);
     $('#hipstermap-title').text(location[0]);
     $('#map_subtitle').val(location[location.length - 1]);
@@ -81,11 +79,23 @@ $(document).on('turbolinks:load', () => {
 
   map.addControl(new mapboxgl.NavigationControl(), 'top-left');
   map.addControl(geocoder);
+});
 
-  // var map = L.mapbox.map('hipstermap-preview-map', 'shigawire.cjkqod0by7xsc2rpju6kvos0x')
-  //     .setView([51.960, 7.617], 13);
-
-})
+function setFormatZoom(map) {
+  var zoom = map.getZoom();
+  format = $('#map_format').val();
+  switch (format) {
+    case '2:3':
+      zoom = Math.round(zoom) + 3
+      break;
+    case '3:4':
+      zoom = Math.round(zoom) + 2
+      break;
+    default:
+      zoom = Math.round(zoom) + 3
+  }
+  $('#map_zoom').val(zoom);
+}
 
 function toDegreesMinutesAndSeconds(coordinate) {
     var absolute = Math.abs(coordinate);

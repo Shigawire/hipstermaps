@@ -7,7 +7,7 @@
       #hipstermap-subtitle
         COUNTRY
       #hipstermap-coords
-        41°01"14" N 28°58"30" O
+        41°01'14" N - 28°58'30" E
   %div
     - if @map.errors.any?
       .uk-alert.uk-alert-danger
@@ -22,13 +22,13 @@
         .uk-form-controls
           = f.input :style, label: 'Style', as: :select, collection: [['Blue', 'blue']], selected: 'Blue', input_html: {class: 'uk-select'}, label_html: {class: 'uk-form-label'}
       .uk-margin
-        .uk-form-controls
+        .uk-form-controls.hidden--on-load
           = f.input :title, label: 'City', input_html: {class: 'uk-input', value: 'CITY'}, label_html: {class: 'uk-form-label'}
       .uk-margin
-        .uk-form-controls
+        .uk-form-controls.hidden--on-load
           = f.input :subtitle, label: 'Country', input_html: {class: 'uk-input', value: 'COUNTRY'}, label_html: {class: 'uk-form-label'}
       .uk-margin
-        .uk-form-controls
+        .uk-form-controls.hidden--on-load
           = f.input :coords, label: 'Coordinates', input_html: {class: 'uk-input'}, label_html: {class: 'uk-form-label'}
       .uk-margin
         = f.input :lon, as: :hidden, input_html: {value: 0}
