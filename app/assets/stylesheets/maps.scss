@@ -38,7 +38,7 @@
 
 #hipstermap-subtitle {
   text-align: center;
-  color: rgb(45, 104, 134);
+  color: #4B98B4;
   margin-top: 10px;
   font-size: 16px;
   letter-spacing: 7px;
@@ -47,7 +47,7 @@
 
 #hipstermap-coords {
   text-align: center;
-  color: rgb(45, 104, 134);
+  color: #4B98B4;
   margin-top: 15px;
   font-size: 16px;
   font-family: 'Arial';
@@ -55,4 +55,16 @@
 
 .hidden--on-load {
   display: none;
+}
+
+.uk-button-primary {
+  background-color: #4B98B4;
+}
+
+.uk-button-primary:hover, .uk-button-primary:focus {
+    background-color: #3e7c93;
+}
+
+.search-image {
+  width: 60%;
 }

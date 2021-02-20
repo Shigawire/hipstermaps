@@ -12,6 +12,8 @@
     - if @map.errors.any?
       .uk-alert.uk-alert-danger
         = @map.errors.full_messages.to_sentence
+    %div
+      .search-image= image_tag 'city-search.png'
     = simple_form_for @map, html: {class: 'uk-form-stacked'} do |f|
       %legend.uk-legend Map Configuration
       .uk-margin
