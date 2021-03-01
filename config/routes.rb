@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root 'maps#new'
 
   resources :maps, only: [:create, :show, :new]
+
+  get '.well-known/health-check', to: 'health#health_check'
 end

@@ -91,4 +91,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Exclude the health check route. This is done to enable the container healthcheck to check the route without a redirect.
+  config.ssl_options = {
+    redirect: {
+      exclude: ->(req) { req.path.in?(["/.well-known/health-check"]) },
+    },
+  }
 end
