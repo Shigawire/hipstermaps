@@ -47,7 +47,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -83,10 +83,24 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+  config.lograge.ignore_actions = ["HealthController#health_check"]
+
+  config.lograge.custom_payload do |controller|
+    {
+      # Allow selecting only rails logs in graylog and dismiss all deployment logs
+      rails_logger: true,
+      user_id: controller.try(:current_user).try(:id),
+    }
+  end
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
+
+    config.lograge.logger = ActiveSupport::Logger.new($stdout)
   end
 
   # Do not dump schema after migrations.

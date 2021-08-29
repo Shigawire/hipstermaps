@@ -1,0 +1,12 @@
+.DS_Store
+.git
+.bundle
+.dockerignore
+.env
+Dockerfile
+
+tmp/*
+!/tmp/.keep
+!/tmp/pids/.keep
+log/*
+coverage/*
