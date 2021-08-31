@@ -43,6 +43,10 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
 
+    - uses: zweitag/github-actions/global-variables@master
+      with:
+        file: '.env.test'
+
     # before_install
     - run: gem install bundler --no-document
 

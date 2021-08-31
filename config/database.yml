@@ -1,0 +1,14 @@
+default: &default
+  # url: this is automatically populated by ENV var `DATABASE_URL`
+
+development:
+  <<: *default
+  url: <%= ENV["DATABASE_URL_WITHOUT_DB_NAME"] %>
+  database: hipstermaps-dev
+test:
+  <<: *default
+  url: <%= ENV["DATABASE_URL_WITHOUT_DB_NAME"] %>
+  database: hipstermaps-test
+
+staging: *default
+production: *default
