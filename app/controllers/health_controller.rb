@@ -3,6 +3,6 @@ class HealthController < ApplicationController
     # check out a connection to verify that the ActiveRecord connection pool isn't exhausted
     ActiveRecord::Base.connection
 
-    render plain: 'ok'
+    render plain: "ok"
   end
 end

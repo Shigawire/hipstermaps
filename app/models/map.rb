@@ -1,5 +1,5 @@
 class Map < ApplicationRecord
-  enum status: [ :in_progress, :available, :failed ]
+  enum status: [:in_progress, :available, :failed]
 
   validates :format, presence: true
   validates :lon, presence: true
@@ -15,11 +15,11 @@ class Map < ApplicationRecord
   end
 
   def cdn_url
-    "https://#{ENV['MAPS_CDN_HOST']}/#{filename}"
+    "https://#{ENV["MAPS_CDN_HOST"]}/#{filename}"
   end
 
   def preview_url
-    "https://#{ENV['MAPS_CDN_HOST']}/preview_#{filename}"
+    "https://#{ENV["MAPS_CDN_HOST"]}/preview_#{filename}"
   end
 
   def start_worker

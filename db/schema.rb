@@ -29,5 +29,4 @@ ActiveRecord::Schema.define(version: 2020_12_17_131333) do
     t.datetime "updated_at", null: false
     t.string "coords"
   end
-
 end

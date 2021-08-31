@@ -2,21 +2,21 @@ class MapWorker
   include Sidekiq::Worker
 
   def perform(id)
-    lambda_fn_name = ENV['LAMBDA_FN_NAME']
-    bucket_name = ENV['AWS_BUCKET_NAME']
+    lambda_fn_name = ENV["LAMBDA_FN_NAME"]
+    bucket_name = ENV["AWS_BUCKET_NAME"]
 
     map = Map.find(id)
 
     payload = {
       formatSize: map.format,
-      mapStyle: 'cjkqod0by7xsc2rpju6kvos0x',
+      mapStyle: "cjkqod0by7xsc2rpju6kvos0x",
       lon: map.lon,
       lat: map.lat,
       bucketFile: map.filename,
       title: map.title,
       subtitle: map.subtitle,
       coords: map.coords,
-      zoom: map.zoom
+      zoom: map.zoom,
 
     }.to_json
 
@@ -25,7 +25,7 @@ class MapWorker
 
     aws_lambda.invoke(
       function_name: lambda_fn_name,
-      payload: payload
+      payload: payload,
     )
 
     bucket = aws_s3.bucket(bucket_name)
