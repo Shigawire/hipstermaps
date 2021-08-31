@@ -71,7 +71,7 @@ jobs:
         DATABASE_URL_WITHOUT_DB_NAME: postgresql://postgres:password@localhost/railsprojecttemplate_test
 
     - name: Rspec
-      run: bin/rspec spec
+      run: bin/rspec test
       env:
         DATABASE_URL_WITHOUT_DB_NAME: postgresql://postgres:password@localhost/railsprojecttemplate_test
 
