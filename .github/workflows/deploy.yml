@@ -16,7 +16,7 @@ jobs:
     outputs:
       app_env: ${{ steps.meta.outputs.app_env }}
       digest: ${{ steps.build_app.outputs.digest }}
-    if: (github.ref == 'refs/heads/production' || github.ref == 'refs/heads/master' || github.event_name == 'schedule') && github.event.workflow_run.conclusion == 'success'
+    if: github.ref == 'refs/heads/production' || github.ref == 'refs/heads/master' || github.event_name == 'schedule'
     steps:
       - name: "Set up meta"
         id: meta
