@@ -5,7 +5,7 @@ env:
   SETOPS_PROJECT: "hipstermaps"
   SETOPS_WEB_APP: "web"
   SETOPS_WORKER_APP: "worker"
-  SETOPS_CLIENT: "zweitag"
+  SETOPS_ORG: "zweitag"
   DOCKER_BUILDKIT: 1
 
 jobs:
@@ -44,9 +44,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
       - name: "Install Setops"
-        uses: setopsco/setup-setops@v2
+        uses: setopsco/setup-setops@v3
         with:
-          setops_client: ${{ env.SETOPS_CLIENT }}
+          setops_organization: ${{ env.SETOPS_ORG }}
           setops_username: ${{ secrets.SETOPS_USER }}
           setops_password: ${{ secrets.SETOPS_PASSWORD }}
       - name: "Login to SetOps registry"
@@ -63,8 +63,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.SETOPS_CLIENT }}.setops.net/${{ env.SETOPS_PROJECT }}/${{ steps.meta.outputs.app_env }}/${{ env.SETOPS_WEB_APP }}:latest
-            ${{ env.SETOPS_CLIENT }}.setops.net/${{ env.SETOPS_PROJECT }}/${{ steps.meta.outputs.app_env }}/${{ env.SETOPS_WORKER_APP }}:latest
+            api.setops.co/${{ env.SETOPS_ORG }}/${{ env.SETOPS_PROJECT }}/${{ steps.meta.outputs.app_env }}/${{ env.SETOPS_WEB_APP }}:latest
+            api.setops.co/${{ env.SETOPS_ORG }}/${{ env.SETOPS_PROJECT }}/${{ steps.meta.outputs.app_env }}/${{ env.SETOPS_WORKER_APP }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           no-cache: ${{ github.event_name == 'schedule' }}
@@ -95,7 +95,7 @@ jobs:
       - name: "Install Setops"
         uses: setopsco/setup-setops@v2
         with:
-          setops_client: ${{ env.SETOPS_CLIENT }}
+          setops_org: ${{ env.SETOPS_ORG }}
           setops_username: ${{ secrets.SETOPS_USER }}
           setops_password: ${{ secrets.SETOPS_PASSWORD }}
       - name: "Discard old Changeset"
