@@ -95,7 +95,7 @@ jobs:
       - name: "Install Setops"
         uses: setopsco/setup-setops@v3
         with:
-          setops_org: ${{ env.SETOPS_ORG }}
+          setops_organization: ${{ env.SETOPS_ORG }}
           setops_username: ${{ secrets.SETOPS_USER }}
           setops_password: ${{ secrets.SETOPS_PASSWORD }}
       - name: "Discard old Changeset"
