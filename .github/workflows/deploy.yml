@@ -4,7 +4,7 @@ on: push
 env:
   SETOPS_PROJECT: "hipstermaps"
   SETOPS_WEB_APP: "web"
-  SETOPS_WORKER_APP: "worker"
+  SETOPS_WORKER_APP: "job"
   SETOPS_ORG: "zweitag"
   DOCKER_BUILDKIT: 1
 
@@ -24,9 +24,9 @@ jobs:
           if [ "$GITHUB_REF" == "refs/heads/staging" ]; then
             APP_ENV=staging
           elif [ "$GITHUB_REF" == "refs/heads/production" ]; then
-            APP_ENV=staging
+            APP_ENV=production
           elif [ "$GITHUB_REF" == "refs/heads/master" ]; then
-            APP_ENV=staging
+            APP_ENV=production
           else
           echo "⚠️ Could not determine app env for branch ${{ env.BRANCH_NAME }}"
           exit 1
@@ -93,7 +93,7 @@ jobs:
           echo "Setops Stage: ${{ env.SETOPS_STAGE }}"
           echo "Image Digest: ${{ needs.build.outputs.digest }}"
       - name: "Install Setops"
-        uses: setopsco/setup-setops@v2
+        uses: setopsco/setup-setops@v3
         with:
           setops_org: ${{ env.SETOPS_ORG }}
           setops_username: ${{ secrets.SETOPS_USER }}
